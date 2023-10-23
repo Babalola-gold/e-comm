@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- crud => create,read,update and delete -->
+    <div style="text-align: center;">
+        <div id="showError"></div>
+        <h1>Intercome Enterprise</h1>
+        <input type="text" placeholder="Add product name" id="name">
+        <input type="text" placeholder="Add desrciption" id="description">
+        <input type="text" placeholder="Enter price" id="price">
+        <button onclick="submitList()">click</button>
+    </div>
+    <div id="display"></div>
+    <div style="text-align: center;">
+        <button onclick="addStart()">Add to start</button>
+        <button onclick="deleteFirst()">Delete first</button>
+        <button onclick="deleteLast()">Delete last</button>
+        <button onclick="deleteAny()">Delete any</button>
+        <button onclick="editAny()">Edit any</button>
+        <button onclick="deleteAll()">Delete all</button>
+    </div>
+    <script>
+        var allList = [];
+        
+        function submitList() {
+            var myList = document.getElementById("name").value
+            var myList = document.getElementById("description").value
+            var myList = document.getElementById("price").value
+            if(myList !=="") {
+                allList.push(myList)
+                name.value = ""
+                description.value = ""
+                price.value = ""
+                showError.innerHTML = ""
+                
+                displayList()
+            } else {
+                showError.innerHTML = "I am not filled yet"
+            }
+        }
+
+        function deleteLast() {
+            allList.pop()
+            displayList()
+        }
+
+        function addStart() {
+            var newList = prompt("Enter your new todo")
+            console.log(newList);
+            allList.unshift(newList)
+            displayList()
+        }
+        function deleteAny() {
+            allList.pop()
+            displayList()
+        }
+        function deleteFirst() {
+            allList.shift()
+            displayList()
+        }
+        function editAny() {
+            var newList = prompt("Enter your new todo")
+            allList.splice(0,1,)
+            displayList()
+        }
+        
+        function deleteAll() {
+            allList.splice(0)
+            displayList()
+        }
+        
+
+        function displayList() {
+            display.innerHTML = ""
+            for (i=0; i < allList.length; i++) {
+                var element = allList[i]
+                display.innerHTML += `<h3>${i+1}.&nbsp;${element}</h3>`
+            }
+        }
+
+    </script>
+</body>
+</html>
